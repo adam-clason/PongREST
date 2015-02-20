@@ -5,11 +5,19 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var players = require('./routes/players');
+var mongoose = require('mongoose');
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
+mongoose.connect('mongodb://localhost/pong', function(err) {
+    if (err) {
+        console.log(err);
+    }
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
